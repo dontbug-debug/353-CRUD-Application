@@ -1,0 +1,42 @@
+.FieldInfo{
+    color:darkslategray;
+        font-family: Bitter, Georgia, "Times New Roman", Times, serif;
+        font-size: 1em;
+}
+div {
+    width: 500px;
+    margin-left: 360px;
+}
+input[type="text"], textarea{
+    border:1px solid dashed;
+    background-color:gainsboro;
+    width: 480px;
+    padding: .5em;
+    font-size: 1.0em;
+}
+input[type="Submit"]{
+    color: white;
+    font-size: 1.0em;
+    font-family: 'Courier New', Courier, monospace;
+    width:200px;
+        height: 40px;
+        background-color: burlywood;
+        border-bottom-left-radius: 35px;
+        border-bottom-right-radius: 35px;
+        border-top-left-radius: 35px;
+        border-top-right-radius: 35px;
+        border-color: black;
+        font-weight: bold;
+        float: left;
+}
+.FieldInfoHeading {
+    color: darkblue;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.3em;
+}
+.success {
+    color:chocolate;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.4em;
+    font-weight: bold;
+}
