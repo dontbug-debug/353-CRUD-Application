@@ -1,11 +1,9 @@
-<strong>353-CRUD-Application</strong>
+# 353-CRUD-Application
 
-K&S Shelter - Home of All Breeds
+**K&S Shelter** - *Home of All Breeds*
 
 Basic Functionality Web App.
 
-New Functionalities:
-
-🔍 - Search
-
-🔐 - Log-in
+**New Functionalities:**
+- 🔍 - Search
+- 🔐 - Log-in
