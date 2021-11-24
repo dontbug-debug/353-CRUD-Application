@@ -4,14 +4,13 @@ require_once("Include/DB.php");
 $SearchQuery = $_GET["id"]; // shows the existing data in the table
 
 if (isset($_POST["Submit"])) {
-        $EName = $_POST["EName"];
-        $SSN = $_POST["SSN"];
-        $Dept = $_POST["Dept"];
-        $Salary = $_POST["Salary"];
-        $HomeAddress = $_POST["HomeAddress"];
+        $Name = $_POST["name"];
+        $Breed = $_POST["breed"];
+        $Age = $_POST["age"];
+        $Weight = $_POST["weight"];
 
         global $ConnectingDB;
-        $sql = "UPDATE emp_record SET ename='$EName', ssn='$SSN', dept='$Dept', salary='$Salary', homeaddress='$HomeAddress' WHERE id='$SearchQuery'";
+        $sql = "UPDATE animal_record SET name='$Name', breed='$Breed', age='$Age', weight='$Weight' WHERE id='$SearchQuery'";
         $Execute = $ConnectingDB->query($sql);
         if ($Execute) {
             // sends the user back to the table 
@@ -36,37 +35,31 @@ if (isset($_POST["Submit"])) {
     $sql = "SELECT * FROM emp_record WHERE id='$SearchQuery'";  // gets the info from the table using id so we can edit/update
     $stmt = $ConnectingDB->query($sql);
     while ($DataRows = $stmt->fetch()) {
-        $Id           = $DataRows["id"];
-        $EName        = $DataRows["ename"];
-        $SSN          = $DataRows["ssn"];
-        $Department   = $DataRows["dept"];
-        $Salary       = $DataRows["salary"];
-        $HomeAddress  = $DataRows["homeaddress"];
+        $Id             = $DataRows["id"];
+        $Name           = $DataRows["name"];
+        $Data           = $DataRows["data"];
+        $Time           = $DataRows["time"];
     }
     ?>
 
     <div class="">
-        <form class="" action="Update.php?id=<?php echo $SearchQuery; ?>" method="post">
+        <form class="" action="Update.php?id=<?php echo $SearchQuery; ?>" method="POST">
             <fieldset>
-                <span class="FieldInfo">Employee Name:</span>
+                <span class="FieldInfo">Name:</span>
                 <br>
-                <input type="text" name="EName" value="<?php echo $EName ?>">
+                <input type="text" name="name" value="<?php echo $Name ?>">
                 <br>
-                <span class="FieldInfo">Social Security Number:</span>
+                <span class="FieldInfo">Breed:</span>
                 <br>
-                <input type="text" name="SSN" value="<?php echo $SSN ?>">
+                <input type="text" name="breed" value="<?php echo $Breed ?>">
                 <br>
-                <span class="FieldInfo">Department:</span>
+                <span class="FieldInfo">Age:</span>
                 <br>
-                <input type="text" name="Dept" value="<?php echo $Department ?>">
+                <input type="text" name="age" value="<?php echo $Age ?>">
                 <br>
-                <span class="FieldInfo">Salary:</span>
+                <span class="FieldInfo">Weight (lbs):</span>
                 <br>
-                <input type="text" name="Salary" value="<?php echo $Salary ?>">
-                <br>
-                <span class="FieldInfo">Home Address:</span>
-                <br>
-                <textarea name="HomeAddress" rows="8" cols="80"><?php echo $HomeAddress ?></textarea>
+                <input type="text" name="weight" value="<?php echo $Weight ?>">
                 <br>
                 <input type="submit" name="Submit" value="Submit your record">
             </fieldset>
