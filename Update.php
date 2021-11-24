@@ -9,6 +9,8 @@ if (isset($_POST["Submit"])) {
         $Age = $_POST["age"];
         $Weight = $_POST["weight"];
 
+        // $data = "Breed: " .  $Breed . "\n" . "Age: " . $Age . " yr(s)" . "\n" . "Weight: " . $Weight . " lbs.";
+
         global $ConnectingDB;
         $sql = "UPDATE animal_record SET name='$Name', breed='$Breed', age='$Age', weight='$Weight' WHERE id='$SearchQuery'";
         $Execute = $ConnectingDB->query($sql);
@@ -32,7 +34,7 @@ if (isset($_POST["Submit"])) {
 <body>
     <?php
     global $ConnectingDB;
-    $sql = "SELECT * FROM emp_record WHERE id='$SearchQuery'";  // gets the info from the table using id so we can edit/update
+    $sql = "SELECT * FROM animal_record WHERE id='$SearchQuery'";  // gets the info from the table using id so we can edit/update
     $stmt = $ConnectingDB->query($sql);
     while ($DataRows = $stmt->fetch()) {
         $Id             = $DataRows["id"];
