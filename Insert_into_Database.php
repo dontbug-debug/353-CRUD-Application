@@ -17,9 +17,6 @@ if (isset($_POST["Submit"])) {
                 $stmt = $ConnectingDB->prepare($sql);
                 $stmt->bindValue(':namE', $Name);
                 $stmt->bindValue(':datA', $data);
-                // $stmt->bindValue(':breeD', $Breed);
-                // $stmt->bindValue(':agE', $Age);
-                // $stmt->bindValue(':weighT', $Weight);
 
         $Execute = $stmt->execute();
         if ($Execute) {
@@ -62,10 +59,6 @@ if (isset($_POST["Submit"])) {
                 <br>
                 <input type="text" name="weight" value="">
                 <br>
-                <!-- <span class="FieldInfo">Home Address:</span>
-                <br>
-                <textarea name="HomeAddress" rows="8" cols="80"></textarea>
-                <br> -->
                 <input type="submit" name="Submit" value="Submit">
             </fieldset>
         </form>

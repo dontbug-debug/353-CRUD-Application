@@ -102,5 +102,4 @@ require_once("Include/DB.php");
     </table>
 
 </body>
-
 </html>
