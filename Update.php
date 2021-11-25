@@ -9,10 +9,10 @@ if (isset($_POST["Submit"])) {
         $Age = $_POST["age"];
         $Weight = $_POST["weight"];
 
-        // $data = "Breed: " .  $Breed . "\n" . "Age: " . $Age . " yr(s)" . "\n" . "Weight: " . $Weight . " lbs.";
+        $data = "Breed: " .  $Breed . "\n" . "Age: " . $Age . " yr(s)" . "\n" . "Weight: " . $Weight . " lbs.";
 
         global $ConnectingDB;
-        $sql = "UPDATE animal_record SET name='$Name', breed='$Breed', age='$Age', weight='$Weight' WHERE id='$SearchQuery'";
+        $sql = "UPDATE animal_record SET name='$Name', data='$data' WHERE id='$SearchQuery'";
         $Execute = $ConnectingDB->query($sql);
         if ($Execute) {
             // sends the user back to the table 
