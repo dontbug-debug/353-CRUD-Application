@@ -31,7 +31,7 @@ require_once("Include/DB.php");
     if (isset($_GET["searchBtn"])) {
         global $ConnectingDB;
         $Search = $_GET["search"];
-        $sql = "SELECT * FROM animal_record WHERE name=:searcH OR breed=:searcH";
+        $sql = "SELECT * FROM animal_record WHERE name=:searcH";
         $stmt = $ConnectingDB->prepare($sql);
         $stmt->bindValue(':searcH', $Search);
         $stmt->execute();
@@ -56,7 +56,7 @@ require_once("Include/DB.php");
                         <td><?php echo $Id; ?></td>
                         <td><?php echo $Name; ?></td>
                         <td><?php echo $Data; ?></td>
-                        <td> </td>
+                        <td><a href = "Report.php?id=<?php echo $Id?>">Report</a></td>
                         <td><?php echo $Time; ?></td>
                         <td> <a href="View_From_Database.php">Search Again</a> </td>
                     </tr>
@@ -93,7 +93,7 @@ require_once("Include/DB.php");
                 <td><?php echo $Id; ?></td>
                 <td><?php echo $Name; ?></td>
                 <td><?php echo $Data; ?></td>
-                <td> </td>
+                <td><a href = "Report.php?id=<?php echo $Id?>">Report</a></td>
                 <td><?php echo $Time; ?></td>
                 <td> <a href="Update.php?id=<?php echo $Id; ?>">Update</a> </td>
                 <td> <a href="Delete.php?id=<?php echo $Id; ?>">Delete</a> </td>

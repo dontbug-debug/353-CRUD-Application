@@ -49,19 +49,19 @@ if (isset($_POST["Submit"])) {
             <fieldset>
                 <span class="FieldInfo">Name:</span>
                 <br>
-                <input type="text" name="name" value="<?php echo $Name ?>">
+                <input type="text" name="name" value="">
                 <br>
                 <span class="FieldInfo">Breed:</span>
                 <br>
-                <input type="text" name="breed" value="<?php echo $Breed ?>">
+                <input type="text" name="breed" value="">
                 <br>
                 <span class="FieldInfo">Age:</span>
                 <br>
-                <input type="text" name="age" value="<?php echo $Age ?>">
+                <input type="text" name="age" value="">
                 <br>
                 <span class="FieldInfo">Weight (lbs):</span>
                 <br>
-                <input type="text" name="weight" value="<?php echo $Weight ?>">
+                <input type="text" name="weight" value="">
                 <br>
                 <input type="submit" name="Submit" value="Submit your record">
             </fieldset>
