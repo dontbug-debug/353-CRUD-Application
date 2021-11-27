@@ -93,7 +93,7 @@ require_once("Include/DB.php");
                 <td><?php echo $Id; ?></td>
                 <td><?php echo $Name; ?></td>
                 <td><?php echo $Data; ?></td>
-                <td><a href = "Report.php?id=<?php echo $Id?>">Report</a></td>
+                <td> <a href = "Report.php?id=<?php echo $Id?>">Report</a> </td>
                 <td><?php echo $Time; ?></td>
                 <td> <a href="Update.php?id=<?php echo $Id; ?>">Update</a> </td>
                 <td> <a href="Delete.php?id=<?php echo $Id; ?>">Delete</a> </td>
