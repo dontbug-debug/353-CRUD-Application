@@ -22,7 +22,7 @@ require_once("Include/DB.php");
     <div class="">
         <fieldset>
             <form class="" action="View_From_Database.php" method="GET">
-                <input type="text" name="search" value="" placeholder="Search by name or breed">
+                <input type="text" name="search" value="" placeholder="Search by name">
                 <input type="submit" name="searchBtn" value="Search record">
             </form>
         </fieldset>

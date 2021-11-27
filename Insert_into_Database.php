@@ -23,7 +23,7 @@ if (isset($_POST["Submit"])) {
             echo '<span class="success">Record Has Added Successfully</span>';
         }
     } else {
-        echo "<span class='FieldInfoHeading'> Please add Name and Social Security Number</span>";
+        echo "<span class='FieldInfoHeading'> Please add Name and And other fields</span>";
     }
 }
 ?>
