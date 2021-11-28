@@ -1,0 +1,201 @@
+<!--
+    Name: Shrawan Parmar
+    NSID: skp196
+    STD#: 11252425
+    Class: CMPT 353
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+
+<body style="background-color:#bfe0ff">
+    <h1 style="text-align: center;">Dog Shelter</h1>
+    <h2>Dog Database</h2>
+    <div style="text-align:right;">    
+        <label for="search">Search:</label>
+        <input type="text" name="search" id="search"><br/>
+        <button id="searchButton">Search by Name</button><br/><br/>
+    </div>
+
+
+    <label for="name">Dog Name:</label>
+    <input type="text" name="name" id="name"><br /><br />
+    <label for="data">Dog Data:</label>
+    <input type="text" name="data" id="data"></input><br />
+    <button id="add">Add Dog</button><br /><br />
+    <div>
+        <label for="previousPost">All Dogs:</label><br/>
+        <span>
+            <label for="sort">Sort:</label>
+            <select name="sort" id="sort">
+                <option value="default">Default</option>
+                <option value="name in ascending">Name in Ascending</option>
+                <option value="name in descending">Name in Descending</option>
+                <option value="time in ascending">Time in Ascending</option>
+                <option value="time in descending">Time in Descending</option>
+            </select>
+            <span>
+    </div>
+    <br />
+    <button id="showAll">Show All dogs</button><br /><br />
+    <textarea readonly id="previousPost" cols="100" rows="10"></textarea>
+
+
+    <div class="container mt-5">
+        <table style="align-self: center;" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        </table>
+    </div>
+
+    <script>
+        function addTable(response) {
+            var table = document.getElementById("dataTable");
+
+            // Update the Table
+            var numRows = table.rows.length;
+            for (var i = 0; i < numRows; i++) {
+                table.deleteRow(0);
+            }
+
+            table.innerHTML += `<thead>
+                                    <tr>
+                                        <td> Name </td>
+                                        <td> Data </td>
+                                        <td> Report </td>
+                                        <td> Time </td>
+                                        <td> Operation </td>
+                                    </tr>
+                                </thead`;
+
+            //Add Database
+            var tblBody = document.createElement("tbody");
+            for (var i = 0; i < response.length; i++) {
+
+                tblBody.innerHTML += `<tr>
+                                        <td>${response[i].name}</td>
+                                        <td>${response[i].data}</td>
+                                        <td><a href='/dogReport.html?id=${response[i].id}&report=${response[i].report}'>See & edit Report</a>
+                                            </td>
+                                        <td>${response[i].timestamp}</td>
+                                        <td>
+                                            <a href='/dogEdit.html?${response[i].id}'>Edit Name&Data</a>
+                                            <form action='/dogDelete/${response[i].id}?_method=DELETE' method='POST'>
+                                                <input type='hidden' name='_method' value='DELETE'>
+                                                <button style='cursor:pointer;' type='submit'>Delete</button>
+                                            </form>
+                                        </td>
+                                        </tr>`;
+
+            }
+            table.appendChild(tblBody);
+            table.setAttribute("border", "2");
+        }
+    </script>
+
+    <script>
+        function search(name) {
+            const xHttp = new XMLHttpRequest();
+            xHttp.addEventListener("load", () => {
+                if (xHttp.readyState == 4 && xHttp.status == 200) {
+                    var response = JSON.parse(xHttp.responseText);
+                    var responseArray = [];
+                    for (var i=0; i<response.length;i++) {
+                        if (response[i].name.toLowerCase() == name.toLowerCase()) {
+                            responseArray.push(response[i]);
+                        }
+                        else {
+                            if ((responseArray.length == 0) && (i==response.length-1)){
+                                alert("Sorry Your Search was Invalid");
+                                console.log(responseArray);
+                                return;
+                            }
+                        }
+                        
+                    }
+                    document.getElementById('previousPost').value = JSON.stringify(response);
+                    addTable(responseArray);
+                }
+            })
+
+            xHttp.open("GET", "/dogReceiveData", true);
+            xHttp.send();
+        }
+
+        function receivePost() {
+            const xHttp = new XMLHttpRequest();
+            xHttp.addEventListener("load", () => {
+                if (xHttp.readyState == 4 && xHttp.status == 200) {
+                    var response = JSON.parse(xHttp.responseText);
+                    const sort = document.getElementById('sort').value
+                    switch (sort) {
+                        case 'name in descending':
+                            response.sort(function (a, b) { if (a.name < b.name) return 1; else return -1; });
+                            break;
+                        case 'name in ascending':
+                            response.sort(function (a, b) { if (a.name < b.name) return -1; else return 1; });
+                            break;
+                        case 'time in descending':
+                            response.sort(function (a, b) { if (a.timestamp < b.timestamp) return 1; else return -1; });
+                            break;
+                        default:
+                            response.sort(function (a, b) { if (a.timestamp < b.timestamp) return -1; else return 1; });
+                            break;
+                    }
+
+                    document.getElementById('previousPost').value = JSON.stringify(response)
+                    addTable(response);
+                }
+            })
+
+            xHttp.open("GET", "/dogReceiveData", true);
+            xHttp.send();
+        }
+
+        function send() {
+            const xHttp = new XMLHttpRequest();
+
+            xHttp.addEventListener("load", () => {
+
+                if (xHttp.readyState == 4 && xHttp.status == 200) {
+                    alert("Successfully Added")
+                    receivePost();
+
+                }
+                else {
+                    alert("Unsuccessfully Added")
+
+                }
+                document.getElementById("name").value = '';
+                document.getElementById("data").value = '';
+
+            })
+
+            const params = "name=" + document.getElementById("name").value + "&data=" + document.getElementById("data").value;
+            xHttp.open("POST", "/dogInsertData", true);
+            xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xHttp.send(params);
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        document.getElementById('add').addEventListener("click", send);
+        document.getElementById('sort').addEventListener('change', receivePost);
+        document.getElementById("showAll").addEventListener("click", receivePost);
+        document.getElementById("searchButton").onclick = function () { search(document.getElementById("search").value) };
+        // var var1=1;
+        // var var2=2;
+        // var var3 = 3;
+
+        // for (var i=1; i<=3; i++) {
+        //     console.log(eval("var"+i));
+        // }
+    </script>
+</body>
+
+</html>

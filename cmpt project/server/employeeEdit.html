@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div">
+    </div>
+
+    <script>
+        var id = document.location.search.replace('?', '');
+        var div = document.getElementById("div");
+
+        div.innerHTML += `<form action='/employeeEdit/${id}?_method=PUT' method='POST'>
+                            <input type='hidden' name='_method' value='PUT'>
+                            <label for='name'>Name:</label>
+                            <input type='text' name='name' id='name'><br/><br/>
+                            
+                            <label for='data'>Data:</label>
+                            <input type='text' name='data' id='data'><br/><br/>
+                            <button id='update'>Update</button>
+                            </form>`;
+
+    </script>
+</body>
+
+</html>

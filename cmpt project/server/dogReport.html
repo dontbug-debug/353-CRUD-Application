@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Report</h1>
+
+    <a href="/dog.html">Go To Home</a>
+
+    <p id="paragraph"></p>
+
+    <div id="div">
+    </div>
+    <script>
+        urlParams = new URLSearchParams(document.location.search);
+        var id = urlParams.get("id");
+        var report = urlParams.get("report");
+
+        if (urlParams.get("report") == "") {
+            report = "null";
+        } else {
+            report = urlParams.get("report");
+        }
+
+        document.getElementById("paragraph").innerHTML += `${report}`;
+
+        var div = document.getElementById("div");
+        div.innerHTML += `<form action='/dogEditReport/${id}/${report}?_method=PUT' method='POST'>
+                    <input type='hidden' name='_method' value='PUT'>
+                    <textarea type='text' name="report" id="report" cols="100" rows="10"></textarea>
+                    <button id='reportButton'>Update Report</button>
+                    </form>`;
+    </script>
+
+</body>
+
+</html>
