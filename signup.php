@@ -8,14 +8,31 @@ if (isset($_POST["Submit"])) {
         $password = $_POST["password"];
 
         global $ConnectingDB;
-        $sql = "INSERT INTO employee_account(username, password) VALUES(:usernamE, :passworD)";
-                $stmt = $ConnectingDB->prepare($sql);
-                $stmt->bindValue(':usernamE', $username);
-                $stmt->bindValue(':passworD', $password);
 
-        $Execute = $stmt->execute();
-        if ($Execute) {
-            echo '<span class="success">Account has been Created Successfully</span>';
+        // checks if the username exists in the database if it exists then <span> add unique username</span>
+        $mySql = "SELECT * FROM employee_account WHERE username=:user";
+        $search = $ConnectingDB->prepare($mySql);
+        $search->bindValue(':user', $username);
+        $search->execute();
+        $user = "";
+        while ($DataRows = $search->fetch()) {
+           $user             = $DataRows["username"];
+        }
+        // ------------------------------------------------------------------------------------------
+
+        if (strtolower($user) != strtolower($username)) {
+            $sql = "INSERT INTO employee_account(username, password) VALUES(:usernamE, :passworD)";
+                    $stmt = $ConnectingDB->prepare($sql);
+                    $stmt->bindValue(':usernamE', $username);
+                    $stmt->bindValue(':passworD', $password);
+            
+            $Execute = $stmt->execute();
+            if ($Execute) {
+                echo '<span class="success">Account has been Created Successfully</span>';
+            }
+        }
+        else {
+            echo "<span class='FieldInfoHeading'>Username Already Exists</span>";
         }
     } else {
         echo "<span class='FieldInfoHeading'>Please add Username and Password. OR have a Unique Username</span>";
@@ -35,6 +52,10 @@ if (isset($_POST["Submit"])) {
 <body>
     <!-- center the whole form using CSS -->
     <?php ?>
+    <div class="navbar">
+        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a> 
+    </div>
+
     <div class="">
         <form class="" action="signup.php" method="POST">
             <fieldset>

@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 require_once("Include/DB.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password             = $DataRows["password"];
 
             if (($LoginUsername == $username) && ($LoginPassword == $password)) {
+                $_SESSION['username'] = $username;
                 echo '<script>window.open("insert_into_Database.php","_self")</script>';
                 $accountFound = 1;
             }
@@ -48,14 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="navbar">
         <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a> 
-        <!-- <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> -->
-        <!-- <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  -->
-        <!-- <a href="login.php"><i class="fa fa-fw fa-user"></i> Login</a> -->
     </div>
 
     <div class="">
+    <fieldset>
         <form class="" action="login.php" method="POST">
-            <fieldset>
+            
                 <span class="FieldInfo">Username:</span>
                 <br>
                 <input type="text" name="username" value="">
@@ -65,8 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" name="password" value="">
                 <br>
                 <input type="submit" name="Submit" value="Login">
-            </fieldset>
         </form>
+        <a href="signup.php">Signup</a>
+    </fieldset>
     </div>
 </body>
 

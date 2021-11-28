@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+if (isset($_SESSION["username"])) {
+    
 require_once("Include/DB.php");
 
 $SearchQuery = $_GET["id"]; // shows the existing data in the table
@@ -12,3 +16,7 @@ $SearchQuery = $_GET["id"]; // shows the existing data in the table
         echo '<script>window.open("View_From_Database.php?id=Record Deleted Successfully","_self")</script>';
     }
 ?>
+
+<?php } else {
+    header("Location: index.php");
+} ?>

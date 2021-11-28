@@ -1,4 +1,7 @@
 <?php
+session_start();
+if (isset($_SESSION["username"])) {
+
 require_once("Include/DB.php");
 ?>
 
@@ -22,7 +25,7 @@ require_once("Include/DB.php");
         <a class="active" href="View_From_Database.php"><i class="fa fa-fw fa-search"></i> View Table</a>
         <!-- <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> -->
         <!-- <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  -->
-        <a href="login.php"><i class="fa fa-fw fa-user"></i> Logout</a>
+        <a href="logout.php"><i class="fa fa-fw fa-user"></i> Logout</a>
     </div>
 
     <h2 class="success">
@@ -115,3 +118,7 @@ require_once("Include/DB.php");
     </table>
 </body>
 </html>
+
+<?php } else {
+    header("Location: index.php");
+} ?>

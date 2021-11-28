@@ -1,4 +1,9 @@
 <?php
+
+session_start();
+
+if (isset($_SESSION["username"])) {
+
 require_once("Include/DB.php");
 
 $SearchQuery = $_GET["id"]; // shows the existing data in the table
@@ -40,7 +45,7 @@ if (isset($_POST["Submit"])) {
         <a href="View_From_Database.php"><i class="fa fa-fw fa-search"></i> View Table</a>
         <!-- <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> -->
         <!-- <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  -->
-        <a href="login.php"><i class="fa fa-fw fa-user"></i> Logout</a>
+        <a href="logout.php"><i class="fa fa-fw fa-user"></i> Logout</a>
     </div>
 
     <?php
@@ -80,3 +85,7 @@ if (isset($_POST["Submit"])) {
     </div>
 </body>
 </html>
+
+<?php } else {
+    header("Location: index.php");
+} ?>
