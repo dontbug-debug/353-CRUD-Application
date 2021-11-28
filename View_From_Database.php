@@ -11,9 +11,20 @@ require_once("Include/DB.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View from Database</title>
     <link rel="stylesheet" href="Include/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
+    <div class="navbar">
+        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a> 
+        <a href="Insert_into_Database.php"><i class="fa fa-fw fa-plus"></i> Insert</a>
+        <a class="active" href="View_From_Database.php"><i class="fa fa-fw fa-search"></i> View Table</a>
+        <!-- <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> -->
+        <!-- <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  -->
+        <a href="login.php"><i class="fa fa-fw fa-user"></i> Logout</a>
+    </div>
+
     <h2 class="success">
         <!-- @ - won't show error when there is no id -->
         <?php echo @$_GET["id"]; ?>
@@ -23,6 +34,7 @@ require_once("Include/DB.php");
         <fieldset>
             <form class="" action="View_From_Database.php" method="GET">
                 <input type="text" name="search" value="" placeholder="Search by name">
+                <br>
                 <input type="submit" name="searchBtn" value="Search record">
             </form>
         </fieldset>
@@ -35,6 +47,7 @@ require_once("Include/DB.php");
         $stmt = $ConnectingDB->prepare($sql);
         $stmt->bindValue(':searcH', $Search);
         $stmt->execute();
+
         while ($DataRows = $stmt->fetch()) {
             $Id             = $DataRows["id"];
             $Name           = $DataRows["name"];
@@ -43,7 +56,7 @@ require_once("Include/DB.php");
     ?>
             <div>
                 <table width="1000" border="5" align="center">
-                    <caption>Search Result</caption>
+                    <h3 align="center">Search Result</h3>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -68,7 +81,7 @@ require_once("Include/DB.php");
     ?>
 
     <table width="1000" border="5" align="center">
-        <caption>View from Database</caption>
+        <h3 align="center">View from Database</h3>
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -93,7 +106,7 @@ require_once("Include/DB.php");
                 <td><?php echo $Id; ?></td>
                 <td><?php echo $Name; ?></td>
                 <td><?php echo $Data; ?></td>
-                <td> <a href = "Report.php?id=<?php echo $Id?>">Report</a> </td>
+                <td> <a href="Report.php?id=<?php echo $Id?>">Report</a> </td>
                 <td><?php echo $Time; ?></td>
                 <td> <a href="Update.php?id=<?php echo $Id; ?>">Update</a> </td>
                 <td> <a href="Delete.php?id=<?php echo $Id; ?>">Delete</a> </td>

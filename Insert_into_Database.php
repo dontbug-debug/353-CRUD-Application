@@ -43,10 +43,12 @@ if (isset($_POST["Submit"])) {
     <?php ?>
     
     <div class="navbar">
-        <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
-        <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> 
-        <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> 
-        <a href="#"><i class="fa fa-fw fa-user"></i> Login</a>
+        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a> 
+        <a class="active" href="Insert_into_Database.php"><i class="fa fa-fw fa-plus"></i> Insert</a>
+        <a href="View_From_Database.php"><i class="fa fa-fw fa-search"></i> View Table</a>
+        <!-- <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> -->
+        <!-- <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  -->
+        <a href="login.php"><i class="fa fa-fw fa-user"></i> Logout</a>
     </div>
 
     <div class="">

@@ -12,7 +12,7 @@ if (isset($_POST["Submit"])) {
     if ($Execute) {
         // sends the user back to the table 
         // _self is so it won't open in a new window
-        echo '<script>window.open("View_From_Database.php?id=Record Updated Successfully","_self")</script>';
+        echo `<script>window.open("Report.php?id=<?php $SearchQuery ?>","_self")</script>`;
     }
 }
 ?>
@@ -26,9 +26,20 @@ if (isset($_POST["Submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="Include/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+
+    <div class="navbar">
+        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a> 
+        <a href="Insert_into_Database.php"><i class="fa fa-fw fa-plus"></i> Insert</a>
+        <a href="View_From_Database.php"><i class="fa fa-fw fa-search"></i> View Table</a>
+        <!-- <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> -->
+        <!-- <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  -->
+        <a href="login.php"><i class="fa fa-fw fa-user"></i> Logout</a>
+    </div>
+
     <h1>Report</h1>
     <?php
     global $ConnectingDB;
@@ -37,7 +48,7 @@ if (isset($_POST["Submit"])) {
     $stmt->bindValue(':iD', $SearchQuery);
     $stmt->execute();
     while ($DataRows = $stmt->fetch()) {
-        $Report             = $DataRows["report"];
+        $Report = $DataRows["report"];
     ?>
         <p><?php echo $Report; ?></p>
     <?php } ?>

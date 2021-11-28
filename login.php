@@ -42,9 +42,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="Include/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+    <div class="navbar">
+        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a> 
+        <!-- <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> -->
+        <!-- <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  -->
+        <!-- <a href="login.php"><i class="fa fa-fw fa-user"></i> Login</a> -->
+    </div>
+
     <div class="">
         <form class="" action="login.php" method="POST">
             <fieldset>
