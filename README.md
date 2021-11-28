@@ -6,4 +6,5 @@ Basic Functionality Web App.
 
 **New Functionalities:**
 - 🔍 - Search
-- 🔐 - Log-in
+- 🔐 - Log-in (Password Encrypted)
+- SQL Injection
