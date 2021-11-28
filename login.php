@@ -3,24 +3,24 @@ session_start();
 require_once("Include/DB.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $LoginUsername = $_POST["username"];
-    $LoginPassword = $_POST["password"];
+    $inputUsername = $_POST["username"];
+    $inputPassword = $_POST["password"];
 
-    if (!empty($LoginUsername) && !empty($LoginPassword)) {
+    if (!empty($inputUsername) && !empty($inputPassword)) {
 
         $accountFound = 0;
 
         global $ConnectingDB;
         $sql = "SELECT * FROM employee_account WHERE username=:usernamE";
         $stmt = $ConnectingDB->prepare($sql);
-        $stmt->bindValue(':usernamE', $LoginUsername);
+        $stmt->bindValue(':usernamE', $inputUsername);
         $stmt->execute();
         while ($DataRows = $stmt->fetch()) {
-            $username             = $DataRows["username"];
-            $password             = $DataRows["password"];
+            $DBusername             = $DataRows["username"];
+            $DBpassword             = $DataRows["password"];
 
-            if (($LoginUsername == $username) && ($LoginPassword == $password)) {
-                $_SESSION['username'] = $username;
+            if (($inputUsername == $DBusername) && password_verify($inputPassword, $DBpassword)) {
+                $_SESSION['username'] = $DBusername;
                 echo '<script>window.open("insert_into_Database.php","_self")</script>';
                 $accountFound = 1;
             }
