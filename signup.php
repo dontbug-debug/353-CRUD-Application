@@ -54,7 +54,8 @@ if (isset($_POST["Submit"])) {
     <!-- center the whole form using CSS -->
     <?php ?>
     <div class="navbar">
-        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a> 
+        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="login.php"><i class="fa fa-fw fa-user"></i> Login</a>
     </div>
 
     <div class="">
