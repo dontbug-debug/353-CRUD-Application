@@ -14,17 +14,17 @@ if (isset($_POST["Submit"])) {
         $search = $ConnectingDB->prepare($mySql);
         $search->bindValue(':user', $username);
         $search->execute();
-        $user = "";
+        $DBusername = "";
         while ($DataRows = $search->fetch()) {
-           $user             = $DataRows["username"];
+           $DBusername             = $DataRows["username"];
         }
         // ------------------------------------------------------------------------------------------
 
-        if (strtolower($user) != strtolower($username)) {
+        if (strtolower($DBusername) != strtolower($username)) {
             $sql = "INSERT INTO employee_account(username, password) VALUES(:usernamE, :passworD)";
                     $stmt = $ConnectingDB->prepare($sql);
                     $stmt->bindValue(':usernamE', $username);
-                    $stmt->bindValue(':passworD', $password);
+                    $stmt->bindValue(':passworD', password_hash($password, PASSWORD_DEFAULT));
             
             $Execute = $stmt->execute();
             if ($Execute) {
