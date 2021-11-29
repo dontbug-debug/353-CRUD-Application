@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (($inputUsername == $DBusername) && password_verify($inputPassword, $DBpassword)) {
                 $_SESSION['username'] = $DBusername;
-                echo '<script>window.open("insert_into_Database.php","_self")</script>';
+                echo '<script>window.open("Insert_into_Database.php","_self")</script>';
                 $accountFound = 1;
             }
         }

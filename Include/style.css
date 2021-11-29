@@ -8,6 +8,22 @@
   margin-left: 360px;
 } */
 
+body {
+  background-color: beige;
+}
+
+h1 {
+  color: maroon;
+  font-size: 15em;
+  filter: drop-shadow(0 0 0.75rem grey);
+}
+
+tagline {
+  color: rgb(190, 150, 80);
+  font-size: 4em;
+  filter: drop-shadow(0 0 0.75rem grey);
+}
+
 input[type="text"],
 input[type="password"],
 textarea {
@@ -33,11 +49,13 @@ input[type="Submit"] {
   font-weight: bold;
   float: left;
 }
+
 .FieldInfoHeading {
   color: darkblue;
   font-family: "Courier New", Courier, monospace;
   font-size: 1.3em;
 }
+
 .success {
   color: chocolate;
   font-family: "Courier New", Courier, monospace;

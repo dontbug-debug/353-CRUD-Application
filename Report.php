@@ -44,7 +44,7 @@ if (isset($_POST["Submit"])) {
         <a href="logout.php"><i class="fa fa-fw fa-user"></i> Logout</a>
     </div>
 
-    <h1>Report</h1>
+    <h2>Report</h2>
     <?php
     global $ConnectingDB;
     $sql = "SELECT * FROM animal_record WHERE id=:iD";
