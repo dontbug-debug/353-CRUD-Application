@@ -21,7 +21,7 @@ const database = mysql.createConnection({
 	port: "3306",
 	user: "root",
 	database: "db",
-	password: "1234", // password is 1234 in mysql. please change if needed
+	password: "1234" // password is 1234 in mysql. please change if needed
 });
 
 database.connect((err) => {
