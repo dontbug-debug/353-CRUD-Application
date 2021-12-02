@@ -15,6 +15,7 @@
 </head>
 
 <body style="background-color:#dadada">
+    <a href="index.html">Home Page</a>
     <h1 style="text-align: center;">Dog Shelter</h1>
     <h2>Employee Database</h2>
     <div style="text-align:right;">    
@@ -26,11 +27,11 @@
 
     <label for="name">Employee Name:</label>
     <input type="text" name="name" id="name"><br /><br />
-    <label for="data">Employee Data:</label>
-    <input type="text" name="data" id="data"></input><br />
+    <label for="data">Employee Data:</label><br>
+    <textarea type="text" name="data" id="data"></textarea><br />
     <button id="add">Add Employee</button><br /><br />
     <div>
-        <label for="previousPost">All Employees:</label><br/>
+        <label for = "dataTable">All Employees:</label><br/>
         <span>
             <label for="sort">Sort:</label>
             <select name="sort" id="sort">
@@ -44,7 +45,7 @@
     </div>
     <br />
     <button id="showAll">Show All Employees</button><br /><br />
-    <textarea readonly id="previousPost" cols="100" rows="10"></textarea>
+    <!-- <textarea readonly id="previousPost" cols="100" rows="10"></textarea> -->
 
 
     <div class="container mt-5">
@@ -117,7 +118,7 @@
                         }
                         
                     }
-                    document.getElementById('previousPost').value = JSON.stringify(response);
+                    // document.getElementById('previousPost').value = JSON.stringify(response);
                     addTable(responseArray);
                 }
             })
@@ -147,7 +148,7 @@
                             break;
                     }
 
-                    document.getElementById('previousPost').value = JSON.stringify(response)
+                    // document.getElementById('previousPost').value = JSON.stringify(response)
                     addTable(response);
                 }
             })
@@ -188,13 +189,6 @@
         document.getElementById('sort').addEventListener('change', receivePost);
         document.getElementById("showAll").addEventListener("click", receivePost);
         document.getElementById("searchButton").onclick = function () { search(document.getElementById("search").value) };
-        // var var1=1;
-        // var var2=2;
-        // var var3 = 3;
-
-        // for (var i=1; i<=3; i++) {
-        //     console.log(eval("var"+i));
-        // }
     </script>
 </body>
 
