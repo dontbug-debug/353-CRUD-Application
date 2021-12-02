@@ -29,14 +29,7 @@ database.connect((err) => {
 		console.log(err);
 		return;
 	}
-	// database.query("CREATE DATABASE IF NOT EXISTS db", function(err, result) {
-	// 	if (err) throw err;
-	// 	console.log("Database created!");
-	// });
-	// database.query("use db", function(err, result) {
-	// 	if (err) throw err;
-	// 	console.log("employees selected!");
-	// });
+
 	database.query("CREATE TABLE IF NOT EXISTS employeeTable (`id` INT AUTO_INCREMENT PRIMARY KEY, `name` VARCHAR(255) not null, `data` text not null, `report` text not null , `timestamp` TIMESTAMP not null default current_timestamp)", function(err, result) {
 		if (err) throw err;
 		console.log("Table created!");
